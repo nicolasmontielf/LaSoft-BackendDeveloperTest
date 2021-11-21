@@ -1,7 +1,10 @@
 import { Router } from "express";
-import * as controller from "../controllers/index";
+import * as controller from "../controllers";
 
-export const index = Router();
+const router = Router();
 
-index.get("/", controller.index);
-index.get("/socket.io", () => console.log("Connected with Socket.io"))
+router.get("/", controller.index);
+router.get("/socket.io", () => console.log("Connected with Socket.io")) // Just for a local bug
+router.post("/reservar", controller.reservar)
+
+export default router;
