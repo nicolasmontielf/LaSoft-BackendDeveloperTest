@@ -7,11 +7,11 @@
         "start": "npm run serve",
         "build": "npm run build-ts",
         "serve": "node dist/server.js",
-        "watch2": "tsc -w && nodemon dist/server.js",
         "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"tsc -w\" \"nodemon dist/server.js\"",
         "run-prettier": "prettier src/*.ts",
         "lint": "eslint src/*.ts",
-        "lint-fix": "yarn lint --fix"
+        "lint-fix": "yarn lint --fix",
+        "prefill": ""
     },
     "author": "",
     "license": "ISC",
@@ -19,6 +19,7 @@
         "dotenv": "^10.0.0",
         "express": "^4.16.2",
         "http-errors": "^1.7.1",
+        "moment": "^2.29.1",
         "mongoose": "^6.0.13",
         "morgan": "^1.9.1"
     },
