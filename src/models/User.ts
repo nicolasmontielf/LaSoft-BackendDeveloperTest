@@ -9,7 +9,14 @@ const userSchema: Schema = new Schema({
         type: String,
         required: true
     },
-    foods: [String]
+    phone: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: false
+    }
 }, {
     timestamps: true
 });
