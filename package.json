@@ -1,17 +1,16 @@
 {
-    "name": "express-ts-template",
+    "name": "lasoft_backendtest",
     "version": "1.2.0",
     "description": "Template Express-Typescript",
     "main": "server.js",
     "scripts": {
         "start": "npm run serve",
-        "build": "npm run build-ts",
         "serve": "node dist/server.js",
         "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"tsc -w\" \"nodemon dist/server.js\"",
         "run-prettier": "prettier src/*.ts",
         "lint": "eslint src/*.ts",
-        "lint-fix": "yarn lint --fix",
-        "prefill": "tsc && node dist/seeders/index.js"
+        "prefill": "tsc && node dist/seeders/index.js",
+        "dev": "tsc && npm run serve"
     },
     "author": "Nicolás Montiel",
     "license": "ISC",

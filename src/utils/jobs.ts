@@ -5,9 +5,9 @@ import User from "../models/User"
 import fs from "fs";
 
 const main = () => {
-    console.log(`The Job is started at ${moment().format("HH:mm:ss")}!`)
-
     cron.schedule('*/30 * * * *', async () => {
+        console.log(`The Job is started at ${moment().format("HH:mm:ss")}!`)
+
         const oneDayFormated = moment.utc().add(1, "d").format()
         const oneDay = moment.utc().add(1, "d");
         const twoHours = moment.utc().add(2, "h");
@@ -33,9 +33,11 @@ const main = () => {
             doctor.slots = newsSlots;
             await doctor.save()
         }
+
+        console.log(`The Job is finished at ${moment().format("HH:mm:ss")}!`)
     });
 
-    console.log(`The Job is finished at ${moment().format("HH:mm:ss")}!`)
+    
 }
 
 const generateNotification = async (userId: any, timeKey: string, doctor: any, slot: any) => {
