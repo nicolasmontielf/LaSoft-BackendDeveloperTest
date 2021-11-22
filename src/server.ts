@@ -5,10 +5,12 @@ import dotenv from "dotenv"
 import connectToMongoDB from "./database/connection"
 import response from "./middlewares/response";
 import router from "./routes";
+import cronJobs from "./utils/jobs"
 
-// Initialize dotenv and database connection
+// Initialize dotenv, database connection and jobs
 dotenv.config()
 connectToMongoDB()
+cronJobs()
 
 // Create Express server
 const app = express();
