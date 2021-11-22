@@ -1,6 +1,6 @@
 {
     "name": "lasoft_backendtest",
-    "version": "1.2.0",
+    "version": "1.0.0",
     "description": "Template Express-Typescript",
     "main": "server.js",
     "scripts": {
