@@ -11,13 +11,15 @@ export const index = async (_: Request, res: Response): Promise<void> => {
 };
 
 export const reservar = async (req: Request, res: Response|any): Promise<void> => {
-    // Validations
-    if (req.body.user_id && checkValidId(req.body.user_id)) {
-        return res.response(400, false, "The field user_id is required and has to be a valid ObjectId.", {});
-    }
-    if (req.body.doctor_id && checkValidId(req.body.doctor_id)) {
+    // Validations. I think allways is better use librarys like express-validator, but in this case i just do it manually.
+    if (!req.body.doctor_id || !checkValidId(req.body.doctor_id)) {
         return res.response(400, false, "The field doctor_id is required and has to be a valid ObjectId.", {});
     }
+
+    if (!req.body.user_id || !checkValidId(req.body.user_id)) {
+        return res.response(400, false, "The field user_id is required and has to be a valid ObjectId.", {});
+    }
+
     if ( !(moment(req.body.slot, "YYYY-MM-DD HH:mm:ss").isValid()) ) {
         return res.response(400, false, "The field slot is required and has to be a valid date.", {});
     }
