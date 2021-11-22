@@ -9,7 +9,7 @@ const main = () => {
 
     cron.schedule('*/30 * * * *', async () => {
         const oneDayFormated = moment.utc().add(1, "d").format()
-        const oneDay = moment.utc().add(7, "d");
+        const oneDay = moment.utc().add(1, "d");
         const twoHours = moment.utc().add(2, "h");
         
         const doctors = await Doctor.find(
@@ -17,19 +17,21 @@ const main = () => {
         );
 
         for (let doctor of doctors) {
-            doctor.slots.map((slot: any) => {
+            let newsSlots = doctor.slots.map((slot: any) => {
                 if (slot.userId) {
                     if (moment.utc(slot.appointment) <= twoHours && !slot.twoHoursNotification) {
                         generateNotification(slot.userId, "2h", doctor, slot);
-                        // slot.twoHoursNotification = true;
-                    }
-                    if (moment.utc(slot.appointment) <= oneDay && !slot.oneDayNotification) {
+                        slot.twoHoursNotification = true;
+                    } else if (moment.utc(slot.appointment) <= oneDay && !slot.oneDayNotification) {
                         generateNotification(slot.userId, "1d", doctor, slot);
-                        // slot.oneDayNotification = true;
+                        slot.oneDayNotification = true;
                     }
                 }
                 return slot;
             })
+            
+            doctor.slots = newsSlots;
+            await doctor.save()
         }
     });
 
