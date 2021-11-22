@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose';
 
 const slotsSchema: Schema = new Schema({
-    appoinment: Date,
+    appointment: Date,
     userId: {
         type: Schema.Types.ObjectId,
         default: null

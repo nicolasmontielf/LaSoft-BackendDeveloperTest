@@ -41,7 +41,7 @@ const createAppoinments = () => {
 
     for (let i = 0; i <= 12; i++) {
         arr.push({
-            appoinment: moment
+            appointment: moment
                 .utc(faker.date.between(todayDate, oneWeekLaterDate))
                 .startOf("hour")
                 .format(),
